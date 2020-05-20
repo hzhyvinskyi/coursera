@@ -15,10 +15,12 @@ func main() {
 	l := log.New(os.Stdout, "api", log.LstdFlags)
 	helloHandler := handlers.NewHello(l)
 	goodbyeHandler := handlers.NewGoodbye(l)
+	productsHandler := handlers.NewProducts(l)
 
 	serveMux := http.NewServeMux()
 	serveMux.Handle("/", helloHandler)
 	serveMux.Handle("/goodbye", goodbyeHandler)
+	serveMux.Handle("/products", productsHandler)
 
 	srv := http.Server{
 		Addr: ":3000",
